@@ -1,0 +1,324 @@
+﻿<Window x:Class="CommerceProject.frmFactor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommerceProject"
+        mc:Ignorable="d"
+        Title="frmFactor" Height="450" Width="800" WindowState="Maximized"
+    WindowStyle="SingleBorderWindow">
+
+    <Grid Name="gridMain" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="Auto"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid Name="gridFactorsShow"  Grid.Column="0" Background="#FFEBCD" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.RowSpan="2">
+
+                <DataGrid FlowDirection="RightToLeft" Height="200" x:Name="GlobalDataGrid" Margin="0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    CanUserAddRows="True"    SelectionChanged="GlobalDataGrid_SelectionChanged"
+                  AutoGenerateColumns="False"  PreviewKeyDown="GlobalDataGrid_PreviewKeyDown" CellEditEnding="GlobalDataGrid_CellEditEnding" 
+                          DataContextChanged="GlobalDataGrid_DataContextChanged" SelectedCellsChanged="GlobalDataGrid_SelectedCellsChanged"
+                          ColumnDisplayIndexChanged="GlobalDataGrid_ColumnDisplayIndexChanged">
+                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="هزینه" Binding="{Binding Path=name}" />
+                        <DataGridTextColumn  Header="مبلغ"  Binding="{Binding Path=price}"/>
+                  
+                    
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label HorizontalAlignment="Center" FontSize="20" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" Margin="10" Name="lblcosts" Width="100" Height="30"></Label>
+                <Button HorizontalAlignment="Center" FontSize="20" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" Margin="10" Content="تایید" Name="btncosts" Width="100" Height="30" Background="LightGreen" Click="btncosts_Click"/>
+            </StackPanel>
+            <DataGrid Name="DtgFactors" MouseDoubleClick="DtgFactors_MouseDoubleClick" Grid.Row="1" Height="auto" Width="auto" Margin="5" IsReadOnly="True"  HorizontalAlignment="Stretch"  FlowDirection="RightToLeft"  CanUserAddRows="False" CanUserReorderColumns="False" Background="#FFEBCD" Visibility="Hidden" ></DataGrid>
+
+            <!--
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+                
+            <DockPanel HorizontalAlignment="Left">
+            <Button Width="40" Name="btnone" Background="WhiteSmoke"
+                    Height="40" Content="1"  Click="btnone_Click" />
+            <Button Name="btntwo" Background="WhiteSmoke"
+                    Height="40" Width="40" Content="2"  Click="btnone_Click" />
+            <Button  Name="btnthree" Background="WhiteSmoke"
+                    Height="40" Width="40" Content="3"  Click="btnone_Click" />
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Left">
+
+                    <Button Name="btnfour" Background="WhiteSmoke" Height="40" Width="40" Content="4"  Click="btnone_Click" />
+            <Button Width="40" Name="btnfive" Background="WhiteSmoke"
+                    Height="40" Content="5"  Click="btnone_Click" />
+            <Button Width="40" Name="btnsix" Background="WhiteSmoke"
+                    Height="40" Content="6"  Click="btnone_Click" />
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Left">
+                
+            <Button Width="40" Name="btnseven" Background="WhiteSmoke"
+                    Height="40" Content="7"  Click="btnone_Click" />
+            <Button Width="40" Name="btneight" Background="WhiteSmoke"
+                    Height="40" Content="8"  Click="btnone_Click" />
+            <Button Width="40" Name="btnnine" Background="WhiteSmoke"
+                    Height="40" Content="9"  Click="btnone_Click" />
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Left">
+            <Button Width="40"  Name="btnC" Background="WhiteSmoke"
+                    Height="40" Content="C"  Click="btnC_Click" />
+            <Button Width="40"  Name="btnzero" Background="WhiteSmoke"
+                    Height="40" Content="0"  Click="btnone_Click" />
+                </DockPanel>
+            </StackPanel>
+            -->
+        </Grid>
+        <Grid Name="gridFactor"  Grid.ColumnSpan="4" Grid.Column="1" Background="#6BA29C"  Margin="0,0,299.6,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="25" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="1" Grid.Row="6"  Background="#6BA29C">
+                <Label Width="70" Name="lblsarbarg" Visibility="Collapsed" HorizontalAlignment="Left"></Label>
+
+                <Label Name="LiveTimeLabel"   HorizontalAlignment="Left" Width="70" FontSize="10"  Foreground="Black" Background="#6BA29C"/>
+                <Label Width="40" FontSize="10" VerticalAlignment="Top" VerticalContentAlignment="Top">:تاریخ</Label>
+            </WrapPanel>
+
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Name="docktitles"  FlowDirection="RightToLeft">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="btnfctorforosh"  Background="WhiteSmoke"  Grid.Column="0" Click="btnfctorforosh_Click" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" Height="20" VerticalAlignment="Top"  >فاکتور فروش</Button>
+                <Button Name="btnfctorkharid" Background="WhiteSmoke"  Grid.Column="1"  Click="btnfctorkharid_Click" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" >فاکتور خرید</Button>
+                <Button Name="btnforoshkol" Background="WhiteSmoke" Grid.Column="2"  Click="btnforoshkol_Click" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed">لیست فاکتورها</Button>
+                <Button  Name="btnedit" DockPanel.Dock="Right" Background="WhiteSmoke" Grid.Column="3" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                    Content="انبار"  Click="btnedit_Click" />
+                <Button DockPanel.Dock="Right" Name="btnfactors" Background="WhiteSmoke" Grid.Column="4" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                     Content="فاکتورها"  Click="btnfactors_Click" />
+                <Button  Name="btnmande" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="5"  Content="مانده حساب" Click="btnmande_Click">
+                <Button.ContextMenu>
+                    <ContextMenu x:Name="MainContextMenu" PlacementRectangle="{Binding RelativeSource={RelativeSource Self}}">
+                        <MenuItem Name="menu">
+                            <MenuItem Header="مانده حساب اشخاص در ابتدای دوره" Click="MenuItem_Click"/>
+                            <MenuItem Header="مانده حساب بانک ها در ابتدای دوره" Click="MenuItem_Click_1"/>
+                            <MenuItem Header="مانده حساب صندوق در ابتدای دوره" Click="MenuItem_Click_2" />
+                            <MenuItem Header="مانده حساب هزینه ها در ابتدای دوره" Click="MenuItem_Click_3"/>
+                        </MenuItem>
+                    </ContextMenu>
+                    </Button.ContextMenu>
+                    <Button.Triggers>
+                        <EventTrigger SourceName="btnmande" RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainContextMenu" Storyboard.TargetProperty="(ContextMenu.IsOpen)">
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <sys:Boolean>True</sys:Boolean>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                
+                </Button>
+                <Button  Name="btnsalary" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="6" Content="حقوق" Click="btnsalary_Click"/>
+                <Button  Name="btncheck" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="7" Content="چک" Click="btncheck_Click"/>
+                <Button  Name="btnbank" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="8" Content="بانک" Click="btnbank_Click"/>
+                <Button  Name="btnpersons" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="9" Content="اشخاص" Click="btnpersons_Click"/>
+                <Button  Name="btnhazine" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="10" Content="هزینه" Click="btnhazine_Click"/>
+                <Button  Name="btnsandogh" DockPanel.Dock="Right" Background="WhiteSmoke"  FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"
+                Grid.Column="11" Content="صندوق" Click="btnsandogh_Click"/>
+            </Grid>
+            <WrapPanel Visibility="Collapsed" Name="wrapfactornumber" Grid.Row="1" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+                <Button Name="btnaddfactor" Width="20" Height="15" Click="btnaddfactor_Click" FontSize="10" Content="add"/>
+                <Button Name="btnlast" Width="20" Height="15" Click="btnlast_Click" Content="last" FontSize="10"/>
+                <Button Name="btnnext" Width="20" Height="15" Click="btnnext_Click" Content="nex" FontSize="10"/>
+                <TextBox Width="40" Height="15" Name="txtfactornumber" SelectionChanged="txtfactornumber_SelectionChanged">1</TextBox>
+                <Button Name="btnpreviuos" Width="20" Height="15" Click="btnpreviuos_Click" FontSize="10" Content="pre"/>
+                <Button Name="btnfirst" Width="20" Height="15" Click="btnfirst_Click" Content="first" FontSize="10"/>
+                <Label Width="30" Height="20" Margin="0 , 0 , 5 , 0" Name="lblidf" Visibility="Hidden" FontSize="12" FontWeight="Heavy" FontStretch="SemiCondensed" FontFamily="B Mitra"></Label>
+                <Label Width="30" Height="20" Margin="0 , 0 , 5 , 0" Name="lblidkh" Visibility="Hidden" FontSize="12" FontWeight="Heavy" FontStretch="SemiCondensed" FontFamily="B Mitra"></Label>
+
+            </WrapPanel>
+            <WrapPanel Visibility="Collapsed" Name="wrapfishdasti" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                <DockPanel HorizontalAlignment="Left">
+                    <TextBox GotFocus="txtfishdasti_GotFocus" LostFocus="txtfishdasti_LostFocus" FontSize="10" Margin="5" FontWeight="Heavy" FontStretch="SemiCondensed" FontFamily="B Mitra" Name="txtfishdasti" Width="40" FlowDirection="RightToLeft" Height="20" />
+                    <Label Name="lblfishdasti"  Width="81" FlowDirection="RightToLeft" Height="30" Margin="5" FontSize="15" FontWeight="Bold" FontStretch="Medium" FontFamily="B Mitra" Content="شماره فاکتور"/>
+                </DockPanel>
+            </WrapPanel>
+            <WrapPanel Visibility="Collapsed" Name="wrapids" Grid.Row="2" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+              
+                <Label  Width="30" Height="30" Content="انبار" FontFamily="B mitra"  FontSize="14" FontWeight="Normal" FontStretch="Normal" />
+                <TextBox Focusable="True" KeyDown="txtanbarnumber_KeyDown" GotFocus="txtanbarnumber_GotFocus" LostFocus="txtanbarnumber_LostFocus" FontFamily="B mitra"  FontSize="16" FontWeight="Normal" FontStretch="Normal" Name="txtanbarnumber" Width="25" Height="20" Margin="5,0"  HorizontalContentAlignment="Center"/>
+                <Label Name="lblanbar" Width="70" Height="30"  FontFamily="B mitra"  FontSize="14" FontWeight="Normal" FontStretch="Normal" Content="انبار فروشگاه"/>
+                <Label  Width="40" Height="30" Content="مشتری" FontFamily="B mitra"  FontSize="14" FontWeight="Normal" FontStretch="Normal"/>
+                <TextBox KeyDown="txtclientnumber_KeyDown" GotFocus="txtclientnumber_GotFocus" LostFocus="txtclientnumber_LostFocus" FontFamily="B mitra"  FontSize="16" FontWeight="Normal" FontStretch="Normal" Name="txtclientnumber" Width="25" Height="20" Margin="5,0"  HorizontalContentAlignment="Center"/>
+                <Button Name="btnother" GotFocus="btnother_GotFocus" LostFocus="btnother_LostFocus" Width="20" Height="20" Click="btnother_Click" Background="WhiteSmoke"/>
+                <Label  Width="30" Height="30" Content="سایر"  FontFamily="B mitra"  FontSize="14" FontWeight="Normal" FontStretch="Normal"/>
+                <Label Width="25" Name="lbliddoreii" FlowDirection="LeftToRight" Visibility="Visible" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" Background="WhiteSmoke"></Label>
+                <Label Width="25" Name="lbliddorei" Visibility="Visible" FlowDirection="RightToLeft" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed" Background="WhiteSmoke"></Label>
+
+            </WrapPanel>
+            <DataGrid Name="dtgmandehesab" Grid.ColumnSpan="2"   Width="auto" IsReadOnly="True" HorizontalAlignment="Stretch"   Grid.Row="3"  FlowDirection="RightToLeft"  CanUserAddRows="False" CanUserReorderColumns="False" Background="#FFEBCD" Visibility="Collapsed">
+            </DataGrid>
+
+            <DataGrid Name="dgproduct"  PreviewKeyDown="dgproduct_PreviewKeyDown" Focusable="True" Grid.ColumnSpan="2"   Width="auto" IsReadOnly="false" SelectedCellsChanged="dgproduct_SelectedCellsChanged" HorizontalAlignment="Stretch"   Grid.Row="3"  FlowDirection="RightToLeft" CanUserAddRows="True" CanUserReorderColumns="False" Background="#FFEBCD" Visibility="Collapsed">
+                <!--<DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding id}"/>
+                            <DataGridTextColumn Binding="{Binding Value}" Header="price"/>
+                            <DataGridTextColumn Header="name" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.DataContext>
+                            <Model:Product/>
+                        </DataGrid.DataContext>-->
+
+            </DataGrid>
+            <DockPanel Visibility="Collapsed" Name="docksum" Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Background="#6BA29C" >
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+                    <Label Width="75" FlowDirection="RightToLeft" Height="30" FontFamily="B mitra"  FontSize="16" FontWeight="Normal" FontStretch="Normal" DockPanel.Dock="Right">جمع فاکتور</Label>
+                    <Label Name="lblresult" Width="80" Height="30" FontSize="15" FontWeight="ExtraBold">0</Label>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Label Width="32" Height="30" FontSize="18" FontFamily="B Jadid" FontWeight="ExtraBlack" FontStretch="Medium" DockPanel.Dock="Right">%</Label>
+                    <CheckBox Name="chdarsad" Height="16" DockPanel.Dock="Right" Checked = "chdarsad_Checked" 
+         Unchecked = "chdarsad_Unchecked"/>
+                    <TextBox IsEnabled="False" Visibility="Visible" Name="txtoff" SelectionChanged="txtoff_SelectionChanged" Width="50" Height="22" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" Margin="5 , 0" DockPanel.Dock="Right">0</TextBox>
+                    <Label Width="54" Height="30" FlowDirection="RightToLeft" FontSize="15" FontFamily="B mitra" FontWeight="Bold" FontStretch="Medium" DockPanel.Dock="Right">تخفیف</Label>
+                    <TextBox GotFocus="txtoffN_GotFocus" LostFocus="txtoffN_LostFocus" Visibility="Visible" TextChanged="txtoffN_TextChanged" Name="txtoffN" Width="50" Height="23" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right">0</TextBox>
+
+                </DockPanel>
+                <StackPanel VerticalAlignment="Bottom">
+                    <WrapPanel FlowDirection="RightToLeft">
+                        <Label Name="lblhazine" Width="50" >هزینه</Label>
+                        <TextBox GotFocus="txthazine_GotFocus" LostFocus="txthazine_LostFocus" Width="50" TextChanged="txthazine_TextChanged" Name="txthazine" FontSize="15" FontWeight="Bold" >0</TextBox>
+                    </WrapPanel>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label Width="120" FlowDirection="RightToLeft" Height="30" FontSize="15" FontFamily="B Jadid" FontWeight="ExtraBold" FontStretch="Medium" DockPanel.Dock="Right">مبلغ قابل پرداخت</Label>
+                        <Label Name="lblResult" Width="75" Height="30" FontSize="15" FontWeight="ExtraBold" HorizontalAlignment="Right">0</Label>
+
+                    </DockPanel>
+                </StackPanel>
+
+            </DockPanel>
+            <!-- <Button Background="#FFEBCD" Name="btndelete" Margin="0 , 0 , 0 , 40" Width="70" Height="30" Click="btndelete_Click" FontSize="15" FontFamily="Cooper Black">Delete</Button> -->
+            <DockPanel  Grid.RowSpan="2"  Grid.Row="4" Background="#6BA29C" Visibility="Visible"  Grid.Column="1" >
+                <StackPanel>
+
+                    <WrapPanel Visibility="Collapsed"  FlowDirection="RightToLeft" VerticalAlignment="Top" Name="wrapdetails">
+                        <Label Name="lbldetails" Width="60" Margin="5,0">توضیحات</Label>
+                        <TextBox  GotFocus="txtdetalis_GotFocus" LostFocus="txtdetalis_LostFocus"  Width="{Binding ActualWidth, ElementName=wrapdetails}"  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" 
+                
+                 Name="txtdetalis" FontSize="15" FontWeight="Bold" ></TextBox>
+                    </WrapPanel>
+                    <WrapPanel Visibility="Collapsed" FlowDirection="RightToLeft" Name="wrapsubmit">
+
+                        <Button GotFocus="btnsubmit_GotFocus" LostFocus="btnsubmit_LostFocus" Background="#FFEBCD" Visibility="Visible" x:Name="btnsubmit" Margin="5"  Width="{Binding ActualWidth, ElementName=wrapsubmit}"  Height="25" Click="btnsubmit_Click" FontSize="15" FontFamily="Cooper Black" Content="ثبت فاکتور"/>
+                        <Button Background="#FFEBCD" x:Name="btneditfactor" Visibility="Collapsed" Margin="5"  Width="{Binding ActualWidth, ElementName=wrapsubmit}"  Height="25" Click="btneditfactor_Click" FontSize="15" FontFamily="Cooper Black" Content="ویرایش فاکتور"/>
+                        <Button Background="#FFEBCD" x:Name="btnedits" Margin="5" Width="{Binding ActualWidth, ElementName=wrapsubmit}" Height="25" Click="btnedit_Click_1" FontFamily="B mitra"  FontSize="16" FontWeight="Normal" FontStretch="Normal" Content="ویرایش چاپ"/>
+                        <Button Background="#FFEBCD" x:Name="btndelete" Margin="5" Width="{Binding ActualWidth, ElementName=wrapsubmit}" Height="25" Click="btndelete_Click" FontFamily="B mitra"  FontSize="16" FontWeight="Normal" FontStretch="Normal" Content="حذف فاکتور" Visibility="Collapsed"/>
+
+                    </WrapPanel>
+                </StackPanel>
+
+
+
+            </DockPanel>
+
+        </Grid>
+        <Grid Background="#FFEBCD" Width="300"  Name="gridProductslayer" Grid.Column="3" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <DockPanel Background="#FFEBCD"  Name="dockProducts" Grid.Row="2">
+                <Label Name="lblinformation" DockPanel.Dock="Bottom" Width="auto" Height="80" Visibility="Collapsed">
+                </Label>
+                <Label Name="lblhazinema" DockPanel.Dock="Bottom" Width="auto" Height="80" Visibility="Collapsed">
+                </Label>
+                <Label Name="lblhazinemoshtari" DockPanel.Dock="Bottom" Width="auto" Height="80" Visibility="Collapsed">
+                </Label>
+                <Menu   FlowDirection="RightToLeft" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed">
+                        <MenuItem Header="مشخصات" Name="details" Click="details_Click"/>
+                        <MenuItem Header="صورت حساب صندوق" Name="hesabsandogh" Click="hesabsandogh_Click"/>
+                        <MenuItem Header="صورت حساب کانتینر" Name="hesabkala" Click="hesabkala_Click"/>
+                    <ListView Width="290" Height="70" Visibility="Collapsed" Name="listhazineha">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="هزینه" Width="120" DisplayMemberBinding="{Binding name}" />
+                                <GridViewColumn Header="مقدار" Width="50" DisplayMemberBinding="{Binding price}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Menu>
+            </DockPanel >
+            <Grid Background="#FFEBCD" Height="auto" Width="300"  Name="gridProducts" Grid.Row="1">
+
+                <ListView Background="#FFEBCD" Name="listproduct" MouseDoubleClick="btnProduct_Click" SelectionChanged="listproduct_SelectionChanged"/>
+
+            </Grid>
+            <Grid Height="auto" Background="#FFEBCD" Width="300"  Name="gridProductss" Grid.Row="1" Visibility="Hidden">
+
+            </Grid>
+            <Grid Visibility="Collapsed" Background="#FFEBCD" Width="300"  Name="gridsearch" Grid.Row="0">
+                <StackPanel>
+
+                    <DockPanel Name="search" Grid.Row="0" FlowDirection="RightToLeft">
+                        <Label Name="lblsearch" Margin="5" Width="50" Height="25" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed">جستجو</Label>
+                        <TextBox  GotFocus="txtsearch_GotFocus" LostFocus="txtsearch_LostFocus" Name="txtsearch" Margin="5" Width="100" Height="30" TextChanged="txtsearch_TextChanged" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed"></TextBox>
+
+                    </DockPanel>
+                    <ComboBox GotFocus="combosearch_GotFocus" LostFocus="combosearch_LostFocus" Name="combosearch" Width="75" Height="30" FontSize="10" FontFamily="B Mitra" FontWeight="Heavy" FontStretch="SemiCondensed">
+                        <ComboBoxItem Content="tiles"/>
+                        <ComboBoxItem Content="list"/>
+                    </ComboBox>
+                    <DockPanel>
+                        <TextBox Name="TxtNumbers" Text="1" FontSize="10" FontFamily="B Mitra" Margin="5" DockPanel.Dock="Right" FontWeight="Heavy" FontStretch="SemiCondensed" Width="40" Height="20"/>
+                        <Label Width="50" Height="25" Name="lblnumbers" FontSize="10" FontStretch="Medium" FontStyle="Italic" FontWeight="UltraBold" HorizontalAlignment="Right" FlowDirection="RightToLeft">تعداد</Label>
+
+                    </DockPanel>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

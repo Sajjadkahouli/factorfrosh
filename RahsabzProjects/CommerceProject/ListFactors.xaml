@@ -1,0 +1,87 @@
+﻿<Window x:Class="CommerceProject.ListFactors"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommerceProject"
+        mc:Ignorable="d"
+        Title="ListFactors" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="gridtitles" Background="WhiteSmoke" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Button Width="50" HorizontalAlignment="Left" Grid.Row="0" FontSize="10">گزارشات</Button>
+            <DockPanel Grid.Row="1" >
+                <StackPanel Width="100">
+                <Button Name="btnchaplist" HorizontalAlignment="Left" Height="28" Width="100" FontSize="10" Content="چاپ لیست فاکتور ها"/>
+                <Button Name="btnchapaghlam" HorizontalAlignment="Left" Height="28" Width="100" FontSize="10" Content="چاپ اقلام مصرفی"/>
+                <Button/>
+                    
+                </StackPanel>
+                <StackPanel Width="50" DockPanel.Dock="Right">
+                    
+                <Label Height="30" Width="30" Name="lblnumber" DockPanel.Dock="Right" Margin="5"/>
+                </StackPanel>
+                <WrapPanel Margin="10 , 0 , 0 , 0" Name="wrapdetails">
+
+                    <TextBox Name="txtsearch" Margin="0 , 15 , 0 , 0" Width="{Binding ActualWidth, ElementName=wrapdetails}"  Height="20" DockPanel.Dock="Right" TextChanged="txtsearch_TextChanged"/>
+                </WrapPanel>
+            </DockPanel>
+            <DockPanel Grid.Row="2">
+                <WrapPanel DockPanel.Dock="Left" Width="158">
+                    
+                <Button Name="btnemal" Width="100" Height="30" Margin="2" Content="جمع ستون مبلغ" Click="btnemal_Click"/>
+                <Button Name="btnsum" Width="50" Height="30" Margin="2" Content="اعمال" Click="btnsum_Click"/>
+                </WrapPanel>
+                <StackPanel DockPanel.Dock="Left" Width="220">
+                    <WrapPanel >
+
+                        <TextBox Name="txtstartT" Width="50" />
+                        <Label Name="lblstartT" Width="40" Content="از تاریخ" FontSize="10"/>
+                        <TextBox Name="txtstartF" Width="30"/>
+                        <Label Name="lblstartF" Width="80" Content="از شماره فاکتور" FontSize="10"/>
+                    </WrapPanel>
+                    <WrapPanel >
+
+                        <TextBox Name="txtendT" Width = "50" Text="{Binding DateTimeValue, StringFormat=dd-MM-yyyy}"/>
+                        <Label Name="lblendT"   Width = "30" Content="تا تاریخ" FontSize="10"/>
+                        <TextBox Name="txtendF" Margin="10 , 0 , 0 ,0" Width="30"/>
+                        <Label Name="lblendF"   Width = "30" Content="تا" FontSize="10"/>
+                </WrapPanel>
+                <WrapPanel Height="30" HorizontalAlignment="Left" Margin="0 , 20 , 0 , 0" FlowDirection="RightToLeft">
+                <Label Name="lblcustomer" Width="50" Content="مشتری"/>
+                        <ComboBox Width="80" Name="comboclient"/>
+                        <Button  Name="btnnull" Width="50" Content="خالی" Click="btnnull_Click"/>
+                    
+                    </WrapPanel>
+                </StackPanel>
+                <Button Name="btnlistdoreha" VerticalAlignment="Top" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="80" Height="30" Content="لیست دوره ها"/>
+            </DockPanel>
+        </Grid>
+        <Grid Name="gridbase" Background="WhiteSmoke" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1">
+            <DataGrid Name="dtgfactors" FlowDirection="RightToLeft" SelectionChanged="dtgfactors_SelectionChanged" Visibility="Collapsed"></DataGrid>
+                <WrapPanel FlowDirection="RightToLeft">
+                    <CheckBox Width="50" Margin="5" Content="نقدی"/>
+                    <CheckBox Width = "50" Margin="5" Content="نسیه"/>
+                    <CheckBox Width = "80" Margin="5" Content="نقدی-نسیه"/>
+                    <Label Width="80" Content="جزئیات فروش"/>
+                </WrapPanel>
+                
+                    <DataGrid VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0 , 0 , 0 ,10" FlowDirection="RightToLeft" Name="dtgfactorsdetails" Grid.Column="1" ></DataGrid>
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
